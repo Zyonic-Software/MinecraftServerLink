@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url = uri('https://jitpack.io')
+    }
+}
+
+dependencies {
+    implementation 'com.github.AzraAnimating:JSONBuilder:1.1.1'
+    implementation 'org.jetbrains:annotations:20.1.0'
+}
+
+test {
+    useJUnitPlatform()
+}
