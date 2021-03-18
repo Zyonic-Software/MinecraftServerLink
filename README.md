@@ -1,5 +1,8 @@
 # MinecraftServerLink
 
+[![](https://jitpack.io/v/Zyonic-Software/MinecraftServerLink.svg)](https://jitpack.io/#Zyonic-Software/MinecraftServerLink)
+
+
 Library used to send Objects between (Minecraft) Servers
 
 MSL Can be used to send objects containing anything between Servers.
