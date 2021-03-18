@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 public class MinecraftServerLink {
 
-    public enum     Type {
+    public enum Type {
         SERVER,
         CLIENT
     }
