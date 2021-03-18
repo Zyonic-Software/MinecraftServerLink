@@ -2,7 +2,7 @@
 
 Library used to send Objects between (Minecraft) Servers
 
-MSL Can be used to Send objects containing anything between Servers.
+MSL Can be used to send objects containing anything between Servers.
 
 MSL can communicate with multiple Clients, with one Instance serving as the Server / Relay.
 
