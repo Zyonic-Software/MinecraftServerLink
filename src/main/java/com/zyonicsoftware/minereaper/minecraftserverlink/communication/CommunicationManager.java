@@ -41,14 +41,16 @@ public class CommunicationManager {
     public void start() throws IOException {
         if(this.minecraftServerLink.getType().equals(MinecraftServerLink.Type.CLIENT)) {
             this.startClientSide(this.minecraftServerLink.getHostname(), this.minecraftServerLink.getPort());
-            this.serverSocket = new ServerSocket(this.minecraftServerLink.getPort());
         } else {
+            this.connectorRun = true;
+            this.serverSocket = new ServerSocket(this.minecraftServerLink.getPort());
+            this.connections = new ArrayList<>();
             this.startServerSide();
         }
     }
 
     private void startServerSide() {
-        System.out.println("[MinecraftServerLink] Connector opened");
+        System.out.println("[MinecraftServerLink] Connector opened on " + this.serverSocket.getInetAddress() + ":" + this.serverSocket.getLocalPort());
         ThreadHandler.startExecute(this.connectionProcess = () -> {
             while (this.connectorRun) {
                 try {
@@ -166,10 +168,14 @@ public class CommunicationManager {
         });
     }
 
-    public void sendObject(Object object) {
-        this.connections.forEach(connection -> {
-            connection.getOutput().println(Base64.getEncoder().encodeToString((byte[]) object));
-        });
+    public void sendObject(byte[] bytes) {
+        if(this.minecraftServerLink.getType().equals(MinecraftServerLink.Type.SERVER)) {
+            this.connections.forEach(connection -> {
+                connection.getOutput().println(Base64.getEncoder().encodeToString(bytes));
+            });
+        } else {
+            this.writer.println(Base64.getEncoder().encodeToString(bytes));
+        }
     }
 
     public void disconnect() throws IOException {

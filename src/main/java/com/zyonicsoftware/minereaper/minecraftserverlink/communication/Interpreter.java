@@ -1,6 +1,7 @@
 package com.zyonicsoftware.minereaper.minecraftserverlink.communication;
 
 import com.zyonicsoftware.minereaper.minecraftserverlink.communication.objects.MSLConnection;
+import com.zyonicsoftware.minereaper.minecraftserverlink.communication.objects.MSLObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -16,11 +17,12 @@ public class Interpreter {
     }
 
     public void interpretServer(String input, MSLConnection connection) throws IOException, ClassNotFoundException {
-        informationParser.parseObject(this.decode(Base64.getDecoder().decode(input)));
+        System.out.println("adssda");
+        informationParser.parseObject((MSLObject) this.decode(Base64.getDecoder().decode(input)));
     }
 
     public void read(String input) throws IOException, ClassNotFoundException {
-        informationParser.parseObject(this.decode(Base64.getDecoder().decode(input)));
+        informationParser.parseObject((MSLObject) this.decode(Base64.getDecoder().decode(input)));
     }
 
 
